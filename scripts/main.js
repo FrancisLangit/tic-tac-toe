@@ -1,13 +1,24 @@
 const gameBoard = (() => {
     let _tiles = Array(9).fill(0);
     let _containerDiv = document.querySelector('.gameBoard');
+    let _currentUser = 'X';
 
     const _markTile = (tileDiv) => {
-        /**Changes the inner HTML of the passed tileDiv node and changes its 
-         * corresponding element in _tiles array accordingly.*/
+        /**Changes the inner HTML of the passed tileDiv node and updates its 
+         * corresponding element in _tiles array.*/
         if (tileDiv.innerHTML === '') {
-            tileDiv.innerHTML += 'X';
-            _tiles[tileDiv.id] = -1;
+            switch (_currentUser) {
+                case 'X':
+                    tileDiv.innerHTML += 'X';
+                    _tiles[tileDiv.id] = -1;
+                    _currentUser = 'O'
+                    break;
+                case 'O':
+                    tileDiv.innerHTML += 'O';
+                    _tiles[tileDiv.id] = 1;
+                    _currentUser = 'X';
+                    break;
+            }
         }
     }
 
@@ -22,7 +33,7 @@ const gameBoard = (() => {
     }
 
     const setUp = () => {
-        /**Sets up the game board displays such onto the webpage.*/
+        /**Sets up the gameBoard module and displays such onto the webpage.*/
         for (i = 0; i < _tiles.length; i++) {
             _containerDiv.append(_createTile(i));
         }
