@@ -3,20 +3,25 @@ const gameBoard = (() => {
     let _containerDiv = document.querySelector('.gameBoard');
     let _currentUser = 'X';
 
+    const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
+                        newCurrentUser) => {
+        /**Updates the innerHTML, corresponding _tiles element, and 
+         * _currentUser of module dependent on tileDiv argument passed.*/
+        tileDiv.innerHTML += newInnerHtml;
+        _tiles[tileDiv.id] = newArrayElement;
+        _currentUser = newCurrentUser;
+    }
+
     const _markTile = (tileDiv) => {
         /**Changes the inner HTML of the passed tileDiv node and updates its 
          * corresponding element in _tiles array.*/
         if (tileDiv.innerHTML === '') {
             switch (_currentUser) {
                 case 'X':
-                    tileDiv.innerHTML += 'X';
-                    _tiles[tileDiv.id] = -1;
-                    _currentUser = 'O'
+                    _updateTile(tileDiv, 'X', -1, 'O');
                     break;
                 case 'O':
-                    tileDiv.innerHTML += 'O';
-                    _tiles[tileDiv.id] = 1;
-                    _currentUser = 'X';
+                    _updateTile(tileDiv, 'O', 1, 'X');
                     break;
             }
         }
