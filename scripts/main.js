@@ -1,21 +1,25 @@
 const gameBoard = (() => {
-    let _tiles = ['X', 'X', 'X', 'X', 'O', 'O', 'O', 'O', 'X',];
+    let _tiles = Array(9).fill(0);
     let _containerDiv = document.querySelector('.gameBoard');
 
-    const _createTileDiv = (tilesArrayElement) => {
-        /**Accepts an element from _tiles array and returns a div node
-         * created out of such.*/
+    const _markTile = (tileDiv) => {
+        if (tileDiv.innerHTML === '') {
+            tileDiv.innerHTML += 'x';
+            _tiles[tileDiv.id] = 1;
+        }
+    }
+
+    const _createTile = (tileIndex) => {
         let tileDiv = document.createElement('div');
-        tileDiv.innerHTML += tilesArrayElement;
+        tileDiv.id = tileIndex;
         tileDiv.classList.add('gameBoardTile');
+        tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
         return tileDiv;
     }
 
     const display = () => {
-        /**Creates a node element out of all elements in _tiles array 
-         * and appends each to the gameBoard's div.*/
         for (i = 0; i < _tiles.length; i++) {
-            _containerDiv.append(_createTileDiv(_tiles[i]));
+            _containerDiv.append(_createTile(i));
         }
     }
 
@@ -23,10 +27,3 @@ const gameBoard = (() => {
 })();
 
 gameBoard.display();
-
-// Create array to hold element representing tiles on gameboard
-// Create container to hold grid of gameboard
-// For each element in gameboard's tiles:
-    // Create a node element out of the array element 
-        // Style the created node element
-    // Append the element to the gameboard's container
