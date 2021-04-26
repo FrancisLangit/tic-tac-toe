@@ -1,12 +1,13 @@
 const gameBoard = (() => {
-    let _tiles = ['O', ' ', ' ', 'X', 'O', 'O', 'O', 'O', 'O',];
-    let _containerDiv = document.querySelector('.gameBoardContainer');
+    let _tiles = ['X', 'X', 'X', 'X', 'O', 'O', 'O', 'O', 'X',];
+    let _containerDiv = document.querySelector('.gameBoard');
 
     const _createTileDiv = (tilesArrayElement) => {
         /**Accepts an element from _tiles array and returns a div node
          * created out of such.*/
         let tileDiv = document.createElement('div');
         tileDiv.innerHTML += tilesArrayElement;
+        tileDiv.classList.add('gameBoardTile');
         return tileDiv;
     }
 
@@ -27,4 +28,5 @@ gameBoard.display();
 // Create container to hold grid of gameboard
 // For each element in gameboard's tiles:
     // Create a node element out of the array element 
+        // Style the created node element
     // Append the element to the gameboard's container
