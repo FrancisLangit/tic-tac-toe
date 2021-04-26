@@ -1,20 +1,20 @@
-let gameBoard = (function() {
-    let tiles = [
-        'X', ' ', ' ',
-        'X', 'O', 'O',
-        'O', 'O', 'O',
-    ];
-    let container = document.querySelector('.gameBoardContainer');
+const gameBoard = (() => {
+    let _tiles = ['O', ' ', ' ', 'X', 'O', 'O', 'O', 'O', 'O',];
+    let _containerDiv = document.querySelector('.gameBoardContainer');
 
-    function createTileDiv(tilesArrayElement) {
+    const _createTileDiv = (tilesArrayElement) => {
+        /**Accepts an element from _tiles array and returns a div node
+         * created out of such.*/
         let tileDiv = document.createElement('div');
         tileDiv.innerHTML += tilesArrayElement;
         return tileDiv;
     }
 
-    function display() {
-        for (i = 0; i < tiles.length; i++) {
-            container.append(createTileDiv(tiles[i]));
+    const display = () => {
+        /**Creates a node element out of all elements in _tiles array 
+         * and appends each to the gameBoard's div.*/
+        for (i = 0; i < _tiles.length; i++) {
+            _containerDiv.append(_createTileDiv(_tiles[i]));
         }
     }
 
