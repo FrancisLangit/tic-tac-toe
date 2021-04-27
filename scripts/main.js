@@ -49,19 +49,22 @@ const gameBoard = (() => {
 })();
 
 const createTile = (tileIndex) => {
+    /**A factory function returning an object representing a tile on the 
+     * gameboard. Accepts tileIndex argument that represents index of tile's
+     * corresponding element in gameBoard.tiles array.*/
 
     const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
                     newCurrentUser) => {
-        /**Updates the innerHTML, corresponding tiles element, and 
-         * _currentUser of module dependent on tileDiv argument passed.*/
+        /**Updates innerHTML of tileDiv node passed, its tiles array element 
+         * in gameBoard module, and gameBoard.currentUser.*/
         tileDiv.innerHTML += newInnerHtml;
         gameBoard.tiles[tileDiv.id] = newArrayElement;
         gameBoard.currentUser = newCurrentUser;
     }
 
     const _markTile = (tileDiv) => {
-        /**Changes the inner HTML of the passed tileDiv node and updates its 
-         * corresponding element in tiles array.*/
+        /**Calls upon _updateTile and passes arguments into such depending on 
+         * value of gameBoard.currentUser.*/
         if (tileDiv.innerHTML === '') {
             switch (gameBoard.currentUser) {
                 case 'X':
@@ -74,6 +77,7 @@ const createTile = (tileIndex) => {
         }
     }
     
+    // Create node representing tile to be appended to gameBoard div.
     let tileDiv = document.createElement('div');
     tileDiv.id = tileIndex;
     tileDiv.classList.add('gameBoardTile');
