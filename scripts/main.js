@@ -1,4 +1,14 @@
 import { gameBoard } from './gameBoard.js';
 
+const main = (() => {
+    /**Module holding body of the tic-tac-toe game.*/
 
-gameBoard.setUp();
+    const run = () => {
+        /**Sets up all modules and objects of the program.*/
+        gameBoard.setUp();
+    }
+
+    return {run}
+})();
+
+main.run();
