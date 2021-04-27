@@ -2,13 +2,14 @@
     display: grid;
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
-}
 
-.gameBoardTile {
-    align-items: center;
-    border: 1px solid rgb(225, 225, 225);
-    display: flex;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 50px;
-    justify-content: center;
+    &Tile {
+        align-items: center;
+        border: 1px solid rgb(225, 225, 225);
+        display: flex;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 50px;
+        justify-content: center;
+        user-select: none;
+    }
 }
