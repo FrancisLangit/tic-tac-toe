@@ -4,27 +4,34 @@ const gameBoard = (() => {
 
     let _containerDiv = document.querySelector('.gameBoard');
 
+    const _isGameWon = (winValue) => {
+        /**Returns true if a player has won. Otherwise, returns false.*/
+        return (
+            tiles[0] + tiles[1] + tiles[2] === winValue ||
+            tiles[3] + tiles[4] + tiles[5] === winValue ||
+            tiles[6] + tiles[7] + tiles[8] === winValue ||
+
+            tiles[0] + tiles[3] + tiles[6] === winValue ||
+            tiles[1] + tiles[4] + tiles[7] === winValue ||
+            tiles[2] + tiles[5] + tiles[8] === winValue ||
+
+            tiles[0] + tiles[4] + tiles[8] === winValue ||
+            tiles[6] + tiles[4] + tiles[2] === winValue
+        )
+    }
+
     const _getWinner = () => {
         /**Checks if a player has won and returns a string representing them 
          * if such is the case.*/
         let winValues = [-3, 3];
         for (i = 0; i < winValues.length; i++) {
-            if (tiles[0] + tiles[1] + tiles[2] === winValues[i] ||
-                tiles[3] + tiles[4] + tiles[5] === winValues[i] ||
-                tiles[6] + tiles[7] + tiles[8] === winValues[i] ||
-    
-                tiles[0] + tiles[3] + tiles[6] === winValues[i] ||
-                tiles[1] + tiles[4] + tiles[7] === winValues[i] ||
-                tiles[2] + tiles[5] + tiles[8] === winValues[i] ||
-    
-                tiles[0] + tiles[4] + tiles[8] === winValues[i] ||
-                tiles[6] + tiles[4] + tiles[2] === winValues[i]) {
-                    switch (winValues[i]) {
-                        case -3:
-                            return 'X';
-                        case 3:
-                            return 'O';
-                    }
+            if (_isGameWon(winValues[i])) {
+                switch (winValues[i]) {
+                    case -3:
+                        return 'X';
+                    case 3:
+                        return 'O';
+                }
             }
         }
     }
@@ -49,9 +56,8 @@ const gameBoard = (() => {
 })();
 
 const createTile = (tileIndex) => {
-    /**A factory function returning an object representing a tile on the 
-     * gameboard. Accepts tileIndex argument that represents index of tile's
-     * corresponding element in gameBoard.tiles array.*/
+    /**Returns object representing gameBoard tile. "tileIndex" argument should
+     * represent index of tile's corresponding element in gameBoard.tiles.*/
 
     const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
                     newCurrentUser) => {
