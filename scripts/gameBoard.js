@@ -7,7 +7,6 @@ import { createTile } from './createTile.js';
     // Else: display "Restart?"
 
 const resetButton = (() =>{    
-
     const _resetGame = () => {
         let gameBoardTiles = document.querySelectorAll('.gameBoardTile');
         for (let i = 0; i < gameBoardTiles.length; i++) {
@@ -18,6 +17,8 @@ const resetButton = (() =>{
 
     let resetButtonNode = document.querySelector('.resetButton')
     resetButtonNode.addEventListener('click', _resetGame);
+
+    return {resetButtonNode}
 })();
 
 const gameBoard = (() => {
@@ -29,7 +30,11 @@ const gameBoard = (() => {
     let _containerDiv = document.querySelector('.gameBoard');
 
     const _isGameWon = (winValue) => {
-        /**Returns true if a player has won. Otherwise, returns false.*/
+        /**Returns true if a player has won. Otherwise, returns false. 
+         * 
+         * Arguments:
+         *  winValue (int): Either -3 or 3. Value to be checked against when 
+         *                  determining if a player has won.*/
         return (
             // Check rows.
             tiles[0] + tiles[1] + tiles[2] === winValue ||
@@ -63,16 +68,31 @@ const gameBoard = (() => {
         }
     }
 
+    const _updateInterface = (isDraw, winner) => {
+        /**Updates the winner display div and reset button depending on 
+         * arguments passed.
+         * 
+         * Arguments:
+         *  isDraw (boolean) : Pass true if game is ends in a draw. Pass 
+         *                     false if otherwise.
+         *  winner (string)  : Either 'X' or 'O'. Represents game winner.*/
+        let winnerDisplay = document.querySelector('.winnerDisplay');
+        if (isDraw) {
+            winnerDisplay.innerHTML = "It's a draw!";
+        } else {
+            winnerDisplay.innerHTML = `${winner} has won the game.`;
+        }
+        resetButton.resetButtonNode.innerHTML = 'Play again?'
+    }
+
     const checkWinner = () => {
         /**Updates the user interface if a player wins the game or if a draw 
          * condition has been met.*/
         let winner = _getWinner();
         if (winner) {
-            document.querySelector('.winnerDisplay').innerHTML = (
-                `${winner} has won the game.`);
+            _updateInterface(false, winner);
         } else if (!tiles.includes(0)) {
-            document.querySelector('.winnerDisplay').innerHTML = (
-                "It's a draw!");
+            _updateInterface(true);
         }
     }
 
