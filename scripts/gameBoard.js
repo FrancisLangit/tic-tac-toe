@@ -6,6 +6,7 @@ const resetButton = (() =>{
         for (let i = 0; i < gameBoardTiles.length; i++) {
             gameBoardTiles[i].innerHTML = '';
         }
+        document.querySelector('.winnerDisplay').innerHTML = 'Game ongoing.';
         gameBoard.tiles = Array(9).fill(0);
     }
 
