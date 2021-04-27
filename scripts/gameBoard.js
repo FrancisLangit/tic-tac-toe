@@ -42,11 +42,15 @@ const gameBoard = (() => {
     }
 
     const checkWinner = () => {
-        /**Updates the user interface if and when a player wins the game.*/
+        /**Updates the user interface if a player wins the game or if a draw 
+         * condition has been met.*/
         let winner = _getWinner();
         if (winner) {
-            let winnerDisplay = document.querySelector('.winnerDisplay');
-            winnerDisplay.innerHTML = `${winner} has won the game.`;
+            document.querySelector('.winnerDisplay').innerHTML = (
+                `${winner} has won the game.`);
+        } else if (!tiles.includes(0)) {
+            document.querySelector('.winnerDisplay').innerHTML = (
+                "It's a draw!");
         }
     }
 
