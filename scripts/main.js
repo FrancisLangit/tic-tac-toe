@@ -1,47 +1,24 @@
 const gameBoard = (() => {
-    let _tiles = Array(9).fill(0);
+    let currentUser = 'X';
+    let tiles = Array(9).fill(0);
+
     let _containerDiv = document.querySelector('.gameBoard');
-    let _currentUser = 'X';
-
-    const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
-                        newCurrentUser) => {
-        /**Updates the innerHTML, corresponding _tiles element, and 
-         * _currentUser of module dependent on tileDiv argument passed.*/
-        tileDiv.innerHTML += newInnerHtml;
-        _tiles[tileDiv.id] = newArrayElement;
-        _currentUser = newCurrentUser;
-    }
-
-    const _markTile = (tileDiv) => {
-        /**Changes the inner HTML of the passed tileDiv node and updates its 
-         * corresponding element in _tiles array.*/
-        if (tileDiv.innerHTML === '') {
-            switch (_currentUser) {
-                case 'X':
-                    _updateTile(tileDiv, 'X', -1, 'O');
-                    break;
-                case 'O':
-                    _updateTile(tileDiv, 'O', 1, 'X');
-                    break;
-            }
-        }
-    }
 
     const _getWinner = () => {
         /**Checks if a player has won and returns a string representing them 
          * if such is the case.*/
         let winValues = [-3, 3];
         for (i = 0; i < winValues.length; i++) {
-            if (_tiles[0] + _tiles[1] + _tiles[2] === winValues[i] ||
-                _tiles[3] + _tiles[4] + _tiles[5] === winValues[i] ||
-                _tiles[6] + _tiles[7] + _tiles[8] === winValues[i] ||
+            if (tiles[0] + tiles[1] + tiles[2] === winValues[i] ||
+                tiles[3] + tiles[4] + tiles[5] === winValues[i] ||
+                tiles[6] + tiles[7] + tiles[8] === winValues[i] ||
     
-                _tiles[0] + _tiles[3] + _tiles[6] === winValues[i] ||
-                _tiles[1] + _tiles[4] + _tiles[7] === winValues[i] ||
-                _tiles[2] + _tiles[5] + _tiles[8] === winValues[i] ||
+                tiles[0] + tiles[3] + tiles[6] === winValues[i] ||
+                tiles[1] + tiles[4] + tiles[7] === winValues[i] ||
+                tiles[2] + tiles[5] + tiles[8] === winValues[i] ||
     
-                _tiles[0] + _tiles[4] + _tiles[8] === winValues[i] ||
-                _tiles[6] + _tiles[4] + _tiles[2] === winValues[i]) {
+                tiles[0] + tiles[4] + tiles[8] === winValues[i] ||
+                tiles[6] + tiles[4] + tiles[2] === winValues[i]) {
                     switch (winValues[i]) {
                         case -3:
                             return 'X';
@@ -52,7 +29,7 @@ const gameBoard = (() => {
         }
     }
 
-    const _checkWinner = () => {
+    const checkWinner = () => {
         /**Updates the user interface if and when a player wins the game.*/
         let winner = _getWinner();
         if (winner) {
@@ -61,25 +38,49 @@ const gameBoard = (() => {
         }
     }
 
-    const _createTile = (tileIndex) => {
-        /**Creates and returns a node representing a tile on the game board. 
-         * Such has ID equal to tileIndex argument passed.*/
-        let tileDiv = document.createElement('div');
-        tileDiv.id = tileIndex;
-        tileDiv.classList.add('gameBoardTile');
-        tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
-        tileDiv.addEventListener('click', _checkWinner);
-        return tileDiv;
-    }
-
     const setUp = () => {
         /**Sets up the gameBoard module and displays such onto the webpage.*/
-        for (i = 0; i < _tiles.length; i++) {
-            _containerDiv.append(_createTile(i));
+        for (i = 0; i < tiles.length; i++) {
+            _containerDiv.append(createTile(i).tileDiv);
         }
     }
 
-    return {setUp}
+    return {currentUser, tiles, checkWinner, setUp,}
 })();
+
+const createTile = (tileIndex) => {
+
+    const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
+                    newCurrentUser) => {
+        /**Updates the innerHTML, corresponding tiles element, and 
+         * _currentUser of module dependent on tileDiv argument passed.*/
+        tileDiv.innerHTML += newInnerHtml;
+        gameBoard.tiles[tileDiv.id] = newArrayElement;
+        gameBoard.currentUser = newCurrentUser;
+    }
+
+    const _markTile = (tileDiv) => {
+        /**Changes the inner HTML of the passed tileDiv node and updates its 
+         * corresponding element in tiles array.*/
+        if (tileDiv.innerHTML === '') {
+            switch (gameBoard.currentUser) {
+                case 'X':
+                    _updateTile(tileDiv, 'X', -1, 'O');
+                    break;
+                case 'O':
+                    _updateTile(tileDiv, 'O', 1, 'X');
+                    break;
+            }
+        }
+    }
+    
+    let tileDiv = document.createElement('div');
+    tileDiv.id = tileIndex;
+    tileDiv.classList.add('gameBoardTile');
+    tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
+    tileDiv.addEventListener('click', gameBoard.checkWinner);
+
+    return {tileDiv};
+}
 
 gameBoard.setUp();
