@@ -46,9 +46,18 @@ const gameBoard = (() => {
                         case 3:
                             return 'O';
                     }
-            } else {
-                break;
             }
+        }
+    }
+
+    const _checkWinner = () => {
+        switch (_getWinner()) {
+            case 'X':
+                document.body.append('Player X has won.');
+                break;
+            case 'O':
+                document.body.append('Player O has won.');
+                break;
         }
     }
 
@@ -59,7 +68,7 @@ const gameBoard = (() => {
         tileDiv.id = tileIndex;
         tileDiv.classList.add('gameBoardTile');
         tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
-        tileDiv.addEventListener('click', _getWinner);
+        tileDiv.addEventListener('click', _checkWinner);
         return tileDiv;
     }
 
