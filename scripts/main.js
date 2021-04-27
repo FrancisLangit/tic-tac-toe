@@ -28,6 +28,8 @@ const gameBoard = (() => {
     }
 
     const _getWinner = () => {
+        /**Checks if a player has won and returns a string representing them 
+         * if such is the case.*/
         let winValues = [-3, 3];
         for (i = 0; i < winValues.length; i++) {
             if (_tiles[0] + _tiles[1] + _tiles[2] === winValues[i] ||
@@ -51,13 +53,11 @@ const gameBoard = (() => {
     }
 
     const _checkWinner = () => {
-        switch (_getWinner()) {
-            case 'X':
-                document.body.append('Player X has won.');
-                break;
-            case 'O':
-                document.body.append('Player O has won.');
-                break;
+        /**Updates the user interface if and when a player wins the game.*/
+        let winner = _getWinner();
+        if (winner) {
+            let winnerDisplay = document.querySelector('.winnerDisplay');
+            winnerDisplay.innerHTML = `${winner} has won the game.`;
         }
     }
 
