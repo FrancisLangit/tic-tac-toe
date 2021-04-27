@@ -8,7 +8,16 @@ const createTile = (tileIndex) => {
     const _updateTile = (tileDiv, newInnerHtml, newArrayElement, 
                     newCurrentUser) => {
         /**Updates innerHTML of tileDiv node passed, its tiles array element 
-         * in gameBoard module, and gameBoard.currentUser.*/
+         * in gameBoard module, and gameBoard.currentUser.
+         * 
+         * Arguments:
+         *  tileDiv (node)          : tileDiv node to be updated. 
+         *  newInnerHtml (char)     : Char to be inputted into tileDiv node. 
+         *                            Either 'X' or 'O'.
+         *  newArrayElement (int)   : Int to be inputted into corresponding 
+         *                            element in gameBoard.tiles. 
+         *  newCurrentUser (string) : Either 'X' or 'O'. Represents user that
+         *                            will be playing the next turn.*/
         tileDiv.innerHTML += newInnerHtml;
         gameBoard.tiles[tileDiv.id] = newArrayElement;
         gameBoard.currentUser = newCurrentUser;
@@ -16,7 +25,10 @@ const createTile = (tileIndex) => {
 
     const _markTile = (tileDiv) => {
         /**Calls upon _updateTile and passes arguments into such depending on 
-         * value of gameBoard.currentUser.*/
+         * value of gameBoard.currentUser.
+         * 
+         * Arguments:
+         *  tileDiv : tileDiv node to be updated.*/
         if (tileDiv.innerHTML === '') {
             switch (gameBoard.currentUser) {
                 case 'X':

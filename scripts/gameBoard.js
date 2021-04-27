@@ -1,11 +1,5 @@
 import { createTile } from './createTile.js';
 
-// Clear the game board in the UI
-// Reset the tiles array (perhaps redeclare it with "Array(9).fill(0)"?)
-// Display is different depending on status of game board:
-    // If draw/winner present: display "Play again?" 
-    // Else: display "Restart?"
-
 const resetButton = (() =>{    
     const _resetGame = () => {
         let gameBoardTiles = document.querySelectorAll('.gameBoardTile');
