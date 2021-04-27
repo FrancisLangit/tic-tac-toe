@@ -27,6 +27,31 @@ const gameBoard = (() => {
         }
     }
 
+    const _getWinner = () => {
+        let winValues = [-3, 3];
+        for (i = 0; i < winValues.length; i++) {
+            if (_tiles[0] + _tiles[1] + _tiles[2] === winValues[i] ||
+                _tiles[3] + _tiles[4] + _tiles[5] === winValues[i] ||
+                _tiles[6] + _tiles[7] + _tiles[8] === winValues[i] ||
+    
+                _tiles[0] + _tiles[3] + _tiles[6] === winValues[i] ||
+                _tiles[1] + _tiles[4] + _tiles[7] === winValues[i] ||
+                _tiles[2] + _tiles[5] + _tiles[8] === winValues[i] ||
+    
+                _tiles[0] + _tiles[4] + _tiles[8] === winValues[i] ||
+                _tiles[6] + _tiles[4] + _tiles[2] === winValues[i]) {
+                    switch (winValues[i]) {
+                        case -3:
+                            return 'X';
+                        case 3:
+                            return 'O';
+                    }
+            } else {
+                break;
+            }
+        }
+    }
+
     const _createTile = (tileIndex) => {
         /**Creates and returns a node representing a tile on the game board. 
          * Such has ID equal to tileIndex argument passed.*/
@@ -34,6 +59,7 @@ const gameBoard = (() => {
         tileDiv.id = tileIndex;
         tileDiv.classList.add('gameBoardTile');
         tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
+        tileDiv.addEventListener('click', _getWinner);
         return tileDiv;
     }
 
