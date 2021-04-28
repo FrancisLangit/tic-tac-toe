@@ -70,10 +70,11 @@ const gameBoard = (() => {
     const checkWinner = () => {
         /**Updates the user interface if a player wins the game or if a draw 
          * condition has been met.*/
+        console.log(gameBoard.tiles);
         let winner = _getWinner();
         if (winner) {
             _updateInterface(false, winner);
-        } else if (!tiles.includes(0)) {
+        } else if (!gameBoard.tiles.includes(0)) {
             _updateInterface(true);
         }
     }
