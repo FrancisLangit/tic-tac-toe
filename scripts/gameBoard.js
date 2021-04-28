@@ -8,6 +8,7 @@ const resetButton = (() =>{
         }
         document.querySelector('.winnerDisplay').innerHTML = 'Game ongoing.';
         gameBoard.tiles = Array(9).fill(0);
+        console.log(gameBoard.tiles);
     }
 
     let resetButtonNode = document.querySelector('.resetButton')
@@ -30,20 +31,21 @@ const gameBoard = (() => {
          * Arguments:
          *  winValue (int): Either -3 or 3. Value to be checked against when 
          *                  determining if a player has won.*/
+        let t = gameBoard.tiles;
         return (
             // Check rows.
-            tiles[0] + tiles[1] + tiles[2] === winValue ||
-            tiles[3] + tiles[4] + tiles[5] === winValue ||
-            tiles[6] + tiles[7] + tiles[8] === winValue ||
+            t[0] + t[1] + t[2] === winValue ||
+            t[3] + t[4] + t[5] === winValue ||
+            t[6] + t[7] + t[8] === winValue ||
 
             // Check columns.
-            tiles[0] + tiles[3] + tiles[6] === winValue ||
-            tiles[1] + tiles[4] + tiles[7] === winValue ||
-            tiles[2] + tiles[5] + tiles[8] === winValue ||
+            t[0] + t[3] + t[6] === winValue ||
+            t[1] + t[4] + t[7] === winValue ||
+            t[2] + t[5] + t[8] === winValue ||
 
             // Check diagonals.
-            tiles[0] + tiles[4] + tiles[8] === winValue ||
-            tiles[6] + tiles[4] + tiles[2] === winValue
+            t[0] + t[4] + t[8] === winValue ||
+            t[6] + t[4] + t[2] === winValue
         )
     }
 
