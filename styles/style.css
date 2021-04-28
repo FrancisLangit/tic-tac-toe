@@ -1,21 +1,42 @@
+body {
+  background: black;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 100px;
+}
+
+.title {
+  font-size: 40px;
+  text-align: center;
+}
+
+.winnerDisplay {
+  text-align: center;
+  font-size: 20px;
+}
+
 .gameBoard {
   display: -ms-grid;
   display: grid;
+  grid-gap: 10px;
   -ms-grid-columns: (150px)[3];
       grid-template-columns: repeat(3, 150px);
   -ms-grid-rows: (150px)[3];
       grid-template-rows: repeat(3, 150px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .gameBoardTile {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #e1e1e1;
+  border-radius: 15px;
+  border: 1px solid white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-family: 'Courier New', Courier, monospace;
   font-size: 50px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -24,4 +45,9 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.resetButton {
+  display: block;
+  margin: 0 auto;
 }
