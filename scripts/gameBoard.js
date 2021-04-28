@@ -9,6 +9,7 @@ const gameBoard = (() => {
     let tiles = Array(9).fill(0);
 
     let _containerDiv = document.querySelector('.gameBoard');
+    let _statusDisplay = document.querySelector('.statusDisplay');
 
     const _isGameWon = (winValue) => {
         /**Returns true if a player has won. Otherwise, returns false. 
@@ -58,24 +59,27 @@ const gameBoard = (() => {
          *  isDraw (boolean) : Pass true if game is ends in a draw. Pass 
          *                     false if otherwise.
          *  winner (string)  : Either 'X' or 'O'. Represents game winner.*/
-        let winnerDisplay = document.querySelector('.winnerDisplay');
+        let statusDisplay = document.querySelector('.statusDisplay');
         if (isDraw) {
-            winnerDisplay.innerHTML = "It's a draw!";
+            statusDisplay.innerHTML = "It's a draw!";
         } else {
-            winnerDisplay.innerHTML = `${winner} has won the game.`;
+            statusDisplay.innerHTML = `${winner} has won the game.`;
         }
         resetButton.resetButtonNode.innerHTML = 'Play again?'
     }
 
-    const checkWinner = () => {
-        /**Updates the user interface if a player wins the game or if a draw 
-         * condition has been met.*/
-        console.log(gameBoard.tiles);
+    const checkStatus = () => {
+        /**Updates the user interface depending on the status of the game:
+         *  - If winner found, display winner.
+         *  - If draw condition met, announce draw.
+         *  - Else, display who's turn it is currently.*/
         let winner = _getWinner();
         if (winner) {
             _updateInterface(false, winner);
         } else if (!gameBoard.tiles.includes(0)) {
             _updateInterface(true);
+        } else if (!winner && gameBoard.tiles.includes(0)){
+            _statusDisplay.innerHTML = `It's ${gameBoard.currentUser}'s turn.`;
         }
     }
 
@@ -86,7 +90,7 @@ const gameBoard = (() => {
         }
     }
 
-    return {currentUser, tiles, checkWinner, setUp,}
+    return {currentUser, tiles, checkStatus, setUp,}
 })();
 
 export { gameBoard };

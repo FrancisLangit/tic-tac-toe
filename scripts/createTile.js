@@ -46,7 +46,7 @@ const createTile = (tileIndex) => {
     tileDiv.id = tileIndex;
     tileDiv.classList.add('gameBoardTile');
     tileDiv.addEventListener('click', _markTile.bind(null, tileDiv));
-    tileDiv.addEventListener('click', gameBoard.checkWinner);
+    tileDiv.addEventListener('click', gameBoard.checkStatus);
 
     return {tileDiv};
 }

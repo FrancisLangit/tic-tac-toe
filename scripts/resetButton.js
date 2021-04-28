@@ -5,14 +5,14 @@ const resetButton = (() =>{
     let resetButtonNode = document.querySelector('.resetButton')
 
     const _resetGame = () => {
-        /**Clears all tiles in gameBoard, resets winnerDisplay, resets 
+        /**Clears all tiles in gameBoard, resets statusDisplay, resets 
          * gameBoard.currentUser, and resets gameBoard.tiles. Also resets 
          * inner HTML of resetButton itself.*/
         let gameBoardTiles = document.querySelectorAll('.gameBoardTile');
         for (let i = 0; i < gameBoardTiles.length; i++) {
             gameBoardTiles[i].innerHTML = '';
         }
-        document.querySelector('.winnerDisplay').innerHTML = 'Game ongoing.';
+        document.querySelector('.statusDisplay').innerHTML = 'Game ongoing.';
         gameBoard.currentUser = 'X';
         gameBoard.tiles = Array(9).fill(0);
         resetButtonNode.innerHTML = 'Restart?';
