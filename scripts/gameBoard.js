@@ -1,21 +1,6 @@
 import { createTile } from './createTile.js';
+import { resetButton } from './resetButton.js';
 
-const resetButton = (() =>{    
-    const _resetGame = () => {
-        let gameBoardTiles = document.querySelectorAll('.gameBoardTile');
-        for (let i = 0; i < gameBoardTiles.length; i++) {
-            gameBoardTiles[i].innerHTML = '';
-        }
-        document.querySelector('.winnerDisplay').innerHTML = 'Game ongoing.';
-        gameBoard.tiles = Array(9).fill(0);
-        console.log(gameBoard.tiles);
-    }
-
-    let resetButtonNode = document.querySelector('.resetButton')
-    resetButtonNode.addEventListener('click', _resetGame);
-
-    return {resetButtonNode}
-})();
 
 const gameBoard = (() => {
     /**Module representing gameboard on user interface where the bulk of the 
