@@ -1,5 +1,6 @@
 import { main } from './main.js'; 
 
+
 const resetButton = (() =>{    
     /**Represents reset button below game board that resets the game.*/
     let resetButtonNode = document.querySelector('.resetButton')
