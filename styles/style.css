@@ -93,3 +93,18 @@ body {
 .footer a:hover {
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 450px) {
+  .gameBoard {
+    -ms-grid-columns: (92.5px)[3];
+        grid-template-columns: repeat(3, 92.5px);
+    -ms-grid-rows: (92.5px)[3];
+        grid-template-rows: repeat(3, 92.5px);
+  }
+  .gameBoardTile {
+    font-size: 35px;
+  }
+  .footer {
+    font-size: 12.5px;
+  }
+}

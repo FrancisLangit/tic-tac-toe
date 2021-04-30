@@ -1,3 +1,5 @@
+@import 'variables';
+
 body {
     background: black;
     color: white;
@@ -18,8 +20,8 @@ body {
 .gameBoard {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: repeat(3, 150px);
-    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3, $tile-size);
+    grid-template-rows: repeat(3, $tile-size);
     justify-content: center;
     margin-bottom: 25px;
 
@@ -28,7 +30,7 @@ body {
         border-radius: 15px;
         border: 1px solid white;
         display: flex;
-        font-size: 50px;
+        font-size: $tile-font-size;
         justify-content: center;
         transition-duration: 0.25s;
         user-select: none;
@@ -77,3 +79,5 @@ body {
         text-decoration: underline;
     }
 }
+
+@import 'viewport_settings';
