@@ -1,27 +1,110 @@
+body {
+  background: black;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 15px;
+}
+
+.title {
+  font-size: 40px;
+  text-align: center;
+}
+
+.statusDisplay {
+  font-size: 20px;
+  text-align: center;
+}
+
 .gameBoard {
   display: -ms-grid;
   display: grid;
+  grid-gap: 10px;
   -ms-grid-columns: (150px)[3];
       grid-template-columns: repeat(3, 150px);
   -ms-grid-rows: (150px)[3];
       grid-template-rows: repeat(3, 150px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 25px;
 }
 
 .gameBoardTile {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid #e1e1e1;
+  border-radius: 15px;
+  border: 1px solid white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  font-family: 'Courier New', Courier, monospace;
   font-size: 50px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-transition-duration: 0.25s;
+          transition-duration: 0.25s;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+.gameBoardTile:hover {
+  background-color: #323232;
+}
+
+.resetButton {
+  background-color: black;
+  border-radius: 10px;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 17.5px;
+  margin: 0 auto;
+  padding: 12.5px;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.resetButton:hover {
+  background-color: white;
+  border-color: black;
+  color: black;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 450px) {
+  .gameBoard {
+    -ms-grid-columns: (92.5px)[3];
+        grid-template-columns: repeat(3, 92.5px);
+    -ms-grid-rows: (92.5px)[3];
+        grid-template-rows: repeat(3, 92.5px);
+  }
+  .gameBoardTile {
+    font-size: 35px;
+  }
+  .footer {
+    font-size: 12.5px;
+  }
 }
