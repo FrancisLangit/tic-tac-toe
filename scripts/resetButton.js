@@ -1,12 +1,12 @@
-import { gameBoard } from './gameBoard.js'; 
+import { main } from './main.js'; 
 
 const resetButton = (() =>{    
     /**Represents reset button below game board that resets the game.*/
     let resetButtonNode = document.querySelector('.resetButton')
 
     const _resetGame = () => {
-        /**Clears all tiles in gameBoard, resets statusDisplay, resets 
-         * gameBoard.currentUser, and resets gameBoard.tiles. Also resets 
+        /**Clears all tiles in main, resets statusDisplay, resets 
+         * main.currentUser, and resets main.tiles. Also resets 
          * inner HTML of resetButton itself.*/
         let gameBoardTiles = document.querySelectorAll('.gameBoardTile');
         for (let i = 0; i < gameBoardTiles.length; i++) {
@@ -14,9 +14,9 @@ const resetButton = (() =>{
         }
         document.querySelector('.statusDisplay').innerHTML = (
             "It's X's starting turn.");
-        gameBoard.currentUser = 'X';
-        gameBoard.tiles = Array(9).fill(0);
-        gameBoard.toggleTiles();
+        main.currentUser = 'X';
+        main.tiles = Array(9).fill(0);
+        main.toggleTiles();
         resetButtonNode.innerHTML = 'Restart?';
     }
 
