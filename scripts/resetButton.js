@@ -12,9 +12,11 @@ const resetButton = (() =>{
         for (let i = 0; i < gameBoardTiles.length; i++) {
             gameBoardTiles[i].innerHTML = '';
         }
-        document.querySelector('.statusDisplay').innerHTML = 'Game ongoing.';
+        document.querySelector('.statusDisplay').innerHTML = (
+            "It's X's starting turn.");
         gameBoard.currentUser = 'X';
         gameBoard.tiles = Array(9).fill(0);
+        gameBoard.toggleTiles();
         resetButtonNode.innerHTML = 'Restart?';
     }
 

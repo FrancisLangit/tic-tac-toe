@@ -51,9 +51,26 @@ const gameBoard = (() => {
         }
     }
 
+    const toggleTiles = (isDisable) => {
+        /**Toggles pointer-events CSS of all tiles in gameBoard dependent on 
+         * isDisable argument passed.
+         * 
+         * Arguments:
+         *  isDisable (boolean) : True if tiles must be disabled. False if 
+         *                        otherwise. */
+        let tileDivs = document.querySelectorAll('.gameBoardTile');
+        for (let i = 0; i < tiles.length; i++) {
+            if (isDisable) {
+                tileDivs[i].style.pointerEvents = 'none';
+            } else {
+                tileDivs[i].style.pointerEvents = 'auto';
+            }
+        }
+    }
+
     const _updateInterface = (isDraw, winner) => {
-        /**Updates the winner display div and reset button depending on 
-         * arguments passed.
+        /**Updates the winner display div, reset button, and tiles depending 
+         * on arguments passed.
          * 
          * Arguments:
          *  isDraw (boolean) : Pass true if game is ends in a draw. Pass 
@@ -66,6 +83,7 @@ const gameBoard = (() => {
             statusDisplay.innerHTML = `${winner} has won the game.`;
         }
         resetButton.resetButtonNode.innerHTML = 'Play again?'
+        toggleTiles(true);
     }
 
     const checkStatus = () => {
@@ -90,7 +108,7 @@ const gameBoard = (() => {
         }
     }
 
-    return {currentUser, tiles, checkStatus, setUp,}
+    return {currentUser, tiles, checkStatus, toggleTiles, setUp,}
 })();
 
 export { gameBoard };
