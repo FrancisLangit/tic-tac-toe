@@ -6,7 +6,7 @@
 
 [A live demo of `tic-tac-toe` is available on GitHub pages.](https://francislangit.github.io/bookly/)
 
-Should one like to run the application on their local machine however:
+However, should one like to run the application on their local machine:
 
 1. Clone the repository with `git clone https://github.com/FrancisLangit/tic-tac-toe` or download it as a `.zip` file and extract it.
 2. Navigate to where the repository is saved on your local machine and open up its `index.html` file on your preferred web browser.
@@ -15,3 +15,12 @@ Should one like to run the application on their local machine however:
 
 ![GIF demonstrating usage of web application](/home/francislangit/Desktop/tic-tac-toe/readme_usage_gif.gif)
 
+Don't know how to play tic-tac-toe? [Click here](https://en.wikipedia.org/wiki/Tic-tac-toe) for information on how to play the game. Other than that though, go grab a friend and play! First one to a row, column, or diagonal of three wins. Should a round end, press the button below the game board to start again.
+
+## Contributing
+
+Anyone is welcome to make a pull request should they seek to make a major change. It is, however, recommended that an issue be submitted first in order that the potential contribution be reviewed before it is constructed. One is also free to submit either of such should a bug be found.
+
+## License
+
+[MIT License](https://github.com/FrancisLangit/tic-tac-toe/blob/prepare-for-publicity/LICENSE)
