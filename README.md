@@ -13,7 +13,7 @@ However, should one like to run the application on their local machine:
 
 ## Usage
 
-![GIF demonstrating usage of web application](/home/francislangit/Desktop/tic-tac-toe/readme_usage_gif.gif)
+![GIF demonstrating usage of web application](readme_usage_gif.gif)
 
 Don't know how to play tic-tac-toe? [Click here](https://en.wikipedia.org/wiki/Tic-tac-toe) for information on how to play the game. Other than that though, go grab a friend and play! First one to a row, column, or diagonal of three wins. Should a round end, press the button below the game board to start again.
 
